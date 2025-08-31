@@ -1,0 +1,64 @@
+# ========================
+# Visual Studio / .NET API
+# ========================
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+*.vc.db
+*.vcoproj
+*.vscode/
+
+# Rider / JetBrains
+.idea/
+
+# Backup & report files
+*.bak
+*.backup
+*.tmp
+*.temp
+*.log
+
+# IIS / Local web server
+[Ii]ISExpress/
+
+# DotCover
+*.dotCover
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.nuget/
+packages/
+
+# Other
+Thumbs.db
+Desktop.ini
+
+# Environment configs (optional, if sensitive)
+*.env
+appsettings.*.json
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Publish output
+publish/
+out/
+
+# Node.js (if you mix with Angular/React frontends later)
+node_modules/
+dist/
