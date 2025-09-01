@@ -1,0 +1,21 @@
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Infrastructure.Persistence.Data;
+
+namespace OnionEcommerceAPI.Infrastructure.Persistence
+{
+    public static class DependencyInjection
+    {
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<StoreContext>((optionBuilder) => //using the ctor that takes Action of optionsBuilder and set the lifetime to scoped by default
+            {
+                optionBuilder.UseSqlServer(configuration.GetConnectionString("StoreContext"));
+            });
+
+            services.AddScoped<IStoreContextInitializer, StoreContextInitializer>();
+            return services;
+        }
+    }
+}

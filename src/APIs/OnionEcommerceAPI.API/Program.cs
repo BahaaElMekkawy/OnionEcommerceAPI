@@ -1,20 +1,37 @@
+using Microsoft.EntityFrameworkCore;
+using OnionEcommerceAPI.API.Extensions;
+using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Infrastructure.Persistence;
+using OnionEcommerceAPI.Infrastructure.Persistence.Data;
 
 namespace OnionEcommerceAPI.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var webApplicationBuilder = WebApplication.CreateBuilder(args);
 
+            #region Configure Services
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            webApplicationBuilder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            webApplicationBuilder.Services.AddEndpointsApiExplorer();
+            webApplicationBuilder.Services.AddSwaggerGen();
 
-            var app = builder.Build();
+            //DependencyInjection.AddPersistenceServices(webApplicationBuilder.Services , webApplicationBuilder.Configuration); call from the static class
+            webApplicationBuilder.Services.AddPersistenceServices(webApplicationBuilder.Configuration); //using as extension method
+
+            #endregion
+
+            var app = webApplicationBuilder.Build();
+
+            #region Database Intializations
+            await app.InitializeStoreContextAsync();
+            #endregion
+
+            #region Configure Kestrel Middlewares
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -29,6 +46,7 @@ namespace OnionEcommerceAPI.API
 
 
             app.MapControllers();
+            #endregion
 
             app.Run();
         }
