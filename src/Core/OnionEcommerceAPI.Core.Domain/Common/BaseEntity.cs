@@ -9,10 +9,5 @@
         // when TKey is a value type (e.g., int, Guid) by wrapping it in an object.
         // Common key types like int, long, Guid, and string already implement this.
         public required TKey Id { get; set; } // The 'required' modifier ensures the property must be initialized during object creation.
-
-        public required string CreatedBy { get; set; }
-        public  DateTime CreatedOn { get; set; } = DateTime.UtcNow; /*in aplication approach or sqldefault value in database but we will be make it in interceptors*/ 
-        public required string LastModifiedBy { get; set; }/*will equls the created by at creation , also we can make it a null at first*/
-        public  DateTime LastModifiedOn { get; set; } = DateTime.UtcNow;
     }
 }

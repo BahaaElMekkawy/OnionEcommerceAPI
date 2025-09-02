@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnionEcommerceAPI.Core.Domain.Contracts;
 using OnionEcommerceAPI.Infrastructure.Persistence.Data;
+using OnionEcommerceAPI.Infrastructure.Persistence.Interceptors;
 
 namespace OnionEcommerceAPI.Infrastructure.Persistence
 {
@@ -15,6 +17,7 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence
             });
 
             services.AddScoped<IStoreContextInitializer, StoreContextInitializer>();
+            services.AddScoped<ISaveChangesInterceptor, CustomSaveChangesInterceptor>();
             return services;
         }
     }

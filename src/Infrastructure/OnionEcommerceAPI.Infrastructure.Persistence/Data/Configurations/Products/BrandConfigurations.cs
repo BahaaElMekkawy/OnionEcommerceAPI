@@ -4,7 +4,7 @@ using OnionEcommerceAPI.Infrastructure.Persistence.Data.Configurations.Base;
 
 namespace OnionEcommerceAPI.Infrastructure.Persistence.Data.Configurations.Products
 {
-    public class BrandConfigurations : BaseEntityConfigurations<ProductBrand,int>
+    public class BrandConfigurations : BaseAuditableEntityConfigurations<ProductBrand,int>
     {
         public override void Configure(EntityTypeBuilder<ProductBrand> builder)
         {

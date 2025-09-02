@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\OnionEcommerceAPI.Core.Application.Abstractions\OnionEcommerceAPI.Core.Application.Abstractions.csproj" />
     <ProjectReference Include="..\..\Infrastructure\OnionEcommerceAPI.Infrastructure.Persistence\OnionEcommerceAPI.Infrastructure.Persistence.csproj" />
   </ItemGroup>
 

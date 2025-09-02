@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\OnionEcommerceAPI.Core.Application.Abstractions\OnionEcommerceAPI.Core.Application.Abstractions.csproj" />
     <ProjectReference Include="..\..\Core\OnionEcommerceAPI.Core.Domain\OnionEcommerceAPI.Core.Domain.csproj" />
   </ItemGroup>
 

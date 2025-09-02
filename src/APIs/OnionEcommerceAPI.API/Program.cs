@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OnionEcommerceAPI.API.Extensions;
+using OnionEcommerceAPI.API.Services;
+using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Domain.Contracts;
 using OnionEcommerceAPI.Infrastructure.Persistence;
 using OnionEcommerceAPI.Infrastructure.Persistence.Data;
@@ -19,6 +21,9 @@ namespace OnionEcommerceAPI.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             webApplicationBuilder.Services.AddEndpointsApiExplorer();
             webApplicationBuilder.Services.AddSwaggerGen();
+
+            webApplicationBuilder.Services.AddHttpContextAccessor();
+            webApplicationBuilder.Services.AddScoped<ICurrentUserService,CurrentUserService>();
 
             //DependencyInjection.AddPersistenceServices(webApplicationBuilder.Services , webApplicationBuilder.Configuration); call from the static class
             webApplicationBuilder.Services.AddPersistenceServices(webApplicationBuilder.Configuration); //using as extension method

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using OnionEcommerceAPI.API.Models;
 
 namespace OnionEcommerceAPI.API.Controllers
 {

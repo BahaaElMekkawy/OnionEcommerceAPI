@@ -1,4 +1,4 @@
-namespace OnionEcommerceAPI.API
+namespace OnionEcommerceAPI.API.Models
 {
     public class WeatherForecast
     {
