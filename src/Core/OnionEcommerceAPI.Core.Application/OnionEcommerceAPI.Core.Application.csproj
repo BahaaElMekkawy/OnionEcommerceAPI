@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnionEcommerceAPI.Core.Application.Abstractions\OnionEcommerceAPI.Core.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\OnionEcommerceAPI.Core.Domain\OnionEcommerceAPI.Core.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

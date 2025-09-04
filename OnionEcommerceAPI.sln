@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionEcommerceAPI.Infrastructure.Persistence", "src\Infrastructure\OnionEcommerceAPI.Infrastructure.Persistence\OnionEcommerceAPI.Infrastructure.Persistence.csproj", "{DAF8549D-CB92-4B5B-9F52-BA69B1B950E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionEcommerceAPI.Infrastructure.Common", "src\Infrastructure\OnionEcommerceAPI.Infrastructure.Common\OnionEcommerceAPI.Infrastructure.Common.csproj", "{5D0F01AD-AE68-4AD8-896B-0FB786DF96B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionEcommerceAPI.Tests", "tests\OnionEcommerceAPI.Tests\OnionEcommerceAPI.Tests.csproj", "{9F87A2C4-614C-4535-8DF4-B824A2D9635C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{5D0F01AD-AE68-4AD8-896B-0FB786DF96B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D0F01AD-AE68-4AD8-896B-0FB786DF96B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D0F01AD-AE68-4AD8-896B-0FB786DF96B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F87A2C4-614C-4535-8DF4-B824A2D9635C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F87A2C4-614C-4535-8DF4-B824A2D9635C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F87A2C4-614C-4535-8DF4-B824A2D9635C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F87A2C4-614C-4535-8DF4-B824A2D9635C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{BF95FE22-02F6-4D34-93C8-43C3FA6A5FA3} = {A1DCCBC1-7AA0-4AE0-AD41-A8CB7BE6D95F}
 		{DAF8549D-CB92-4B5B-9F52-BA69B1B950E5} = {4153E6AB-9C4E-4001-AC8D-631ECF3BE4C0}
 		{5D0F01AD-AE68-4AD8-896B-0FB786DF96B9} = {4153E6AB-9C4E-4001-AC8D-631ECF3BE4C0}
+		{9F87A2C4-614C-4535-8DF4-B824A2D9635C} = {5F2D1BD9-3EAF-4A7F-9A00-4BA26EBE7DAE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A067DB10-C0D3-4409-87E8-5E2F7B42D1AB}

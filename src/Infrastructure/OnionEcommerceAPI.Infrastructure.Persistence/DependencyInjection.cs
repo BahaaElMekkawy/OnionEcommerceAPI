@@ -18,6 +18,7 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence
 
             services.AddScoped<IStoreContextInitializer, StoreContextInitializer>();
             services.AddScoped<ISaveChangesInterceptor, CustomSaveChangesInterceptor>();
+            services.AddScoped<IUnitOfWork, UnitOfWork.UnitOfWork>();
             return services;
         }
     }
