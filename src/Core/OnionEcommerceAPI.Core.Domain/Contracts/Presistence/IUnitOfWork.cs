@@ -1,6 +1,6 @@
 ﻿using OnionEcommerceAPI.Core.Domain.Entities.Products;
 
-namespace OnionEcommerceAPI.Core.Domain.Contracts
+namespace OnionEcommerceAPI.Core.Domain.Contracts.Presistence
 {
     public interface IUnitOfWork : IAsyncDisposable
     {

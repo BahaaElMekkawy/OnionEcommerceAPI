@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnionEcommerceAPI.Core.Domain.Contracts
+namespace OnionEcommerceAPI.Core.Domain.Contracts.Presistence
 {
     public interface IStoreContextInitializer
     {

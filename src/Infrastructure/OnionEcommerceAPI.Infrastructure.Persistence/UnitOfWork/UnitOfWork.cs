@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using OnionEcommerceAPI.Core.Domain.Common;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 using OnionEcommerceAPI.Infrastructure.Persistence.Data;
-using OnionEcommerceAPI.Infrastructure.Persistence.Repositories;
+using OnionEcommerceAPI.Infrastructure.Persistence.Repositories.Generic_Repository;
 
 namespace OnionEcommerceAPI.Infrastructure.Persistence.UnitOfWork
 {

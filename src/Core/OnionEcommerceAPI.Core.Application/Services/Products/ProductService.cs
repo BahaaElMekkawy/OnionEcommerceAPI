@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Products;
 using OnionEcommerceAPI.Core.Application.Abstractions.Models.Product;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
+using OnionEcommerceAPI.Core.Domain.Specifications.Products;
 
 namespace OnionEcommerceAPI.Core.Application.Services.Products
 {
@@ -18,7 +19,8 @@ namespace OnionEcommerceAPI.Core.Application.Services.Products
         }
         public async Task<IEnumerable<ProductDetailsDto>> GetAllProductsAsync()
         {
-            var products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync();
+            var spec = new ProductWithBrandAndCategorySpecifications();
+            var products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(spec);
 
             var productsDto = _mapper.Map<IEnumerable<ProductDetailsDto>>(products);
 
@@ -26,7 +28,9 @@ namespace OnionEcommerceAPI.Core.Application.Services.Products
         }
         public async Task<ProductDetailsDto?> GetProductAsync(int id)
         {
-            var product = await _unitOfWork.GetRepository<Product, int>().GetAsync(id);
+            var spec = new ProductWithBrandAndCategorySpecifications(id);
+
+            var product = await _unitOfWork.GetRepository<Product, int>().GetAsync(spec);
             if (product is null)
                 return null;
             ProductDetailsDto productDto = _mapper.Map<ProductDetailsDto>(product);

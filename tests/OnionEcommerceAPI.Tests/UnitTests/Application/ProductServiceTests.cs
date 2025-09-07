@@ -5,7 +5,7 @@ using Moq;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Abstractions.Models.Product;
 using OnionEcommerceAPI.Core.Application.Services.Products;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
 
 namespace OnionEcommerceAPI.Tests.UnitTests.Application

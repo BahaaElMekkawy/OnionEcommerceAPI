@@ -2,7 +2,7 @@
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Products;
 using OnionEcommerceAPI.Core.Application.Services.Products;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 
 namespace OnionEcommerceAPI.Core.Application.Services
 {

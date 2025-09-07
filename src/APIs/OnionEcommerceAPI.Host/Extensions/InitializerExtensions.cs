@@ -1,4 +1,4 @@
-﻿using OnionEcommerceAPI.Core.Domain.Contracts;
+﻿using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 
 namespace OnionEcommerceAPI.API.Extensions
 {

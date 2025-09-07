@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
 
 namespace OnionEcommerceAPI.Infrastructure.Persistence.Data
