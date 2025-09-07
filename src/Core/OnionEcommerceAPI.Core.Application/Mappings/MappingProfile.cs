@@ -10,7 +10,8 @@ namespace OnionEcommerceAPI.Core.Application.Mappings
         {
             CreateMap<Product, ProductDetailsDto>()
                 .ForMember(dest => dest.Brand, O => O.MapFrom(src => src.Brand!.Name))
-                .ForMember(dest => dest.Category, O => O.MapFrom(src => src.Category!.Name));
+                .ForMember(dest => dest.Category, O => O.MapFrom(src => src.Category!.Name))
+                .ForMember(dest => dest.PictureUrl, O => O.MapFrom<ProductPictureUrlResolver>());
 
             CreateMap<ProductBrand, BrandDto>();
             CreateMap<ProductCategory, CategoryDto>();
