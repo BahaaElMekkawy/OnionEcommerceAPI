@@ -14,6 +14,10 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence.Data.Configurations.Produ
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(P => P.NormalizedName)
+               .IsRequired()
+               .HasMaxLength(100);
+
             builder.Property(P => P.Description)
                 .IsRequired();
 
@@ -29,6 +33,8 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence.Data.Configurations.Produ
               .WithMany()
               .HasForeignKey(P => P.CategoryId)
               .OnDelete(DeleteBehavior.SetNull);
+
+            builder.HasIndex(P => P.NormalizedName);
         }
-    }  
+    }
 }

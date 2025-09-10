@@ -13,7 +13,15 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence.Repositories.Generic_Repo
             if (specifications.Criteria is not null)
                 query = query.Where(specifications.Criteria);
 
+            if (specifications.OrderByDesc is not null)
+                query = query.OrderByDescending(specifications.OrderByDesc);
+            else if (specifications.OrderBy is not null)
+                query = query.OrderBy(specifications.OrderBy);
+
             query = specifications.Includes.Aggregate(query, (currentQuery, includeExpression) => currentQuery.Include(includeExpression));
+            
+            if (specifications.IsPaginationEnabled)
+                query = query.Skip(specifications.Skip).Take(specifications.Take);
 
             return query;
         }

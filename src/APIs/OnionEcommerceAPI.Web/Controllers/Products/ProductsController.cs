@@ -8,14 +8,14 @@ namespace OnionEcommerceAPI.Web.Controllers.Products
     public class ProductsController(IServiceManager serviceManager) : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDetailsDto>>> GetProducts()
+        public async Task<ActionResult<PagedResponse<ProductDetailsDto>>> GetProducts([FromQuery]ProductSpecParams specParams)
         {
-            var products = await serviceManager.ProductService.GetAllProductsAsync();
+            var products = await serviceManager.ProductService.GetAllProductsAsync(specParams.Search, specParams.Sort,specParams.BrandId, specParams.CategoryId , specParams.PageIndex , specParams.PageSize );
             return Ok(products);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<ProductDetailsDto>> GetProduct(int id) 
+        public async Task<ActionResult<ProductDetailsDto>> GetProduct(int id)
         {
             var product = await serviceManager.ProductService.GetProductAsync(id);
             if (product is null)

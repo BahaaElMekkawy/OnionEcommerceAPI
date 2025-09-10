@@ -37,6 +37,10 @@ namespace OnionEcommerceAPI.Infrastructure.Persistence.Repositories.Generic_Repo
         {
             return await SpecificationsEvaluator<TEntity, TKey>.GetQuery(_context.Set<TEntity>(), specifications).FirstOrDefaultAsync();
         }
+        public async Task<int> GetCountAsync(ISpecifications<TEntity, TKey> specifications)
+        {
+            return await SpecificationsEvaluator<TEntity, TKey>.GetQuery(_context.Set<TEntity>(), specifications).CountAsync();
+        }
 
         public async Task AddAsync(TEntity entity)
         {

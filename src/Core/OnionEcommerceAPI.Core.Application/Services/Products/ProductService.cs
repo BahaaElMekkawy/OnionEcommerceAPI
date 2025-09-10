@@ -12,19 +12,32 @@ namespace OnionEcommerceAPI.Core.Application.Services.Products
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public ProductService(IUnitOfWork unitOfWork , IMapper mapper)
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<ProductDetailsDto>> GetAllProductsAsync()
+        public async Task<PagedResponse<ProductDetailsDto>> GetAllProductsAsync(string? search , string? sort, int? brandId, int? categoryId, int pageIndex, int pageSize)
         {
-            var spec = new ProductWithBrandAndCategorySpecifications();
+            var spec = new ProductWithBrandAndCategorySpecifications(search ,sort, brandId, categoryId, pageIndex, pageSize);
+
             var products = await _unitOfWork.GetRepository<Product, int>().GetAllAsync(spec);
 
             var productsDto = _mapper.Map<IEnumerable<ProductDetailsDto>>(products);
 
-            return productsDto;
+            var countSpec = new ProductCriteriaCount(search , brandId, categoryId);
+
+            var totalCount = await _unitOfWork.GetRepository<Product, int>().GetCountAsync(countSpec);
+
+            var response = new PagedResponse<ProductDetailsDto>()
+            {
+                Data = productsDto,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                TotalCount = totalCount
+            };
+
+            return response;
         }
         public async Task<ProductDetailsDto?> GetProductAsync(int id)
         {
