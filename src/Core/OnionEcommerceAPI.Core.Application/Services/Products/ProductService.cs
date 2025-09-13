@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Products;
 using OnionEcommerceAPI.Core.Application.Abstractions.Models.Product;
+using OnionEcommerceAPI.Core.Application.Common.Exception;
 using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
 using OnionEcommerceAPI.Core.Domain.Specifications.Products;
@@ -45,7 +46,7 @@ namespace OnionEcommerceAPI.Core.Application.Services.Products
 
             var product = await _unitOfWork.GetRepository<Product, int>().GetAsync(spec);
             if (product is null)
-                return null;
+                throw new NotFoundException(nameof(Product) , id);
             ProductDetailsDto productDto = _mapper.Map<ProductDetailsDto>(product);
             return productDto;
 

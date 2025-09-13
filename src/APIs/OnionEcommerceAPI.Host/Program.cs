@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnionEcommerceAPI.API.Extensions;
 using OnionEcommerceAPI.API.Services;
@@ -5,9 +6,11 @@ using OnionEcommerceAPI.Core.Application;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Mappings;
 using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Host.Middleware;
 using OnionEcommerceAPI.Infrastructure.Persistence;
 using OnionEcommerceAPI.Infrastructure.Persistence.Data;
 using OnionEcommerceAPI.Web;
+using OnionEcommerceAPI.Web.Errors;
 
 namespace OnionEcommerceAPI.API
 {
@@ -21,6 +24,20 @@ namespace OnionEcommerceAPI.API
             // Add services to the container.
 
             webApplicationBuilder.Services.AddControllers()
+                .ConfigureApiBehaviorOptions(options => {
+                    options.SuppressModelStateInvalidFilter = false; //Default 
+                    options.InvalidModelStateResponseFactory = (actionContext) =>
+                    {
+                        var errors = actionContext.ModelState.Where(P => P.Value!.Errors.Count > 0)
+                        .SelectMany(p => p.Value!.Errors)
+                        .Select(E => E.ErrorMessage);
+
+                        return new BadRequestObjectResult(new ApiModelValidationResponse()
+                        {
+                            Errors = errors
+                        });
+                    };
+                })
                 .AddApplicationPart(WebAssemblyReference.Assembly);
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             webApplicationBuilder.Services.AddEndpointsApiExplorer();
@@ -48,6 +65,8 @@ namespace OnionEcommerceAPI.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            //My Custom Middleware for handling the exceptions
+            app.UseExceptionHandlingMiddleware();
 
             app.UseStaticFiles();
 

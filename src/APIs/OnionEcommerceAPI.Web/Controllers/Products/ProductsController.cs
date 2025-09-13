@@ -18,8 +18,6 @@ namespace OnionEcommerceAPI.Web.Controllers.Products
         public async Task<ActionResult<ProductDetailsDto>> GetProduct(int id)
         {
             var product = await serviceManager.ProductService.GetProductAsync(id);
-            if (product is null)
-                return NotFound();
             return Ok(product);
         }
 
