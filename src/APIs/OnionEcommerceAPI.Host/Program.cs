@@ -7,6 +7,7 @@ using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Mappings;
 using OnionEcommerceAPI.Core.Domain.Contracts;
 using OnionEcommerceAPI.Host.Middleware;
+using OnionEcommerceAPI.Infrastructure.Common;
 using OnionEcommerceAPI.Infrastructure.Persistence;
 using OnionEcommerceAPI.Infrastructure.Persistence.Data;
 using OnionEcommerceAPI.Web;
@@ -48,6 +49,7 @@ namespace OnionEcommerceAPI.API
 
             //DependencyInjection.AddPersistenceServices(webApplicationBuilder.Services , webApplicationBuilder.Configuration); call from the static class
             webApplicationBuilder.Services.AddPersistenceServices(webApplicationBuilder.Configuration); //using as extension method
+            webApplicationBuilder.Services.AddInfrastructureServices(webApplicationBuilder.Configuration);
             webApplicationBuilder.Services.AddApplicationServices();
             #endregion
 

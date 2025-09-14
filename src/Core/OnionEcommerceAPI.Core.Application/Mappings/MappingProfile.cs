@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using OnionEcommerceAPI.Core.Application.Abstractions.Models.Basket;
 using OnionEcommerceAPI.Core.Application.Abstractions.Models.Product;
+using OnionEcommerceAPI.Core.Domain.Entities.Basket;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
 
 namespace OnionEcommerceAPI.Core.Application.Mappings
@@ -15,6 +17,9 @@ namespace OnionEcommerceAPI.Core.Application.Mappings
 
             CreateMap<ProductBrand, BrandDto>();
             CreateMap<ProductCategory, CategoryDto>();
+
+            CreateMap<CustomerBasket, CustomerBasketDto>().ReverseMap();
+            CreateMap<BasketItem, BasketItemDto>().ReverseMap(); //For Update and Create
         }
     }
 }
