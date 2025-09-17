@@ -1,15 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using OnionEcommerceAPI.API.Extensions;
 using OnionEcommerceAPI.API.Services;
 using OnionEcommerceAPI.Core.Application;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
-using OnionEcommerceAPI.Core.Application.Mappings;
-using OnionEcommerceAPI.Core.Domain.Contracts;
+using OnionEcommerceAPI.Host.Extensions;
 using OnionEcommerceAPI.Host.Middleware;
 using OnionEcommerceAPI.Infrastructure.Common;
 using OnionEcommerceAPI.Infrastructure.Persistence;
-using OnionEcommerceAPI.Infrastructure.Persistence.Data;
 using OnionEcommerceAPI.Web;
 using OnionEcommerceAPI.Web.Errors;
 
@@ -25,7 +22,8 @@ namespace OnionEcommerceAPI.API
             // Add services to the container.
 
             webApplicationBuilder.Services.AddControllers()
-                .ConfigureApiBehaviorOptions(options => {
+                .ConfigureApiBehaviorOptions(options =>
+                {
                     options.SuppressModelStateInvalidFilter = false; //Default 
                     options.InvalidModelStateResponseFactory = (actionContext) =>
                     {
@@ -45,12 +43,15 @@ namespace OnionEcommerceAPI.API
             webApplicationBuilder.Services.AddSwaggerGen();
 
             webApplicationBuilder.Services.AddHttpContextAccessor();
-            webApplicationBuilder.Services.AddScoped<ICurrentUserService,CurrentUserService>();
+            webApplicationBuilder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             //DependencyInjection.AddPersistenceServices(webApplicationBuilder.Services , webApplicationBuilder.Configuration); call from the static class
             webApplicationBuilder.Services.AddPersistenceServices(webApplicationBuilder.Configuration); //using as extension method
             webApplicationBuilder.Services.AddInfrastructureServices(webApplicationBuilder.Configuration);
             webApplicationBuilder.Services.AddApplicationServices();
+
+            webApplicationBuilder.Services.AddIdentityServices();
+
             #endregion
 
             var app = webApplicationBuilder.Build();

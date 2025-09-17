@@ -1,26 +1,21 @@
 ﻿using System.Text.Json;
-using Microsoft.EntityFrameworkCore;
-using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
+using OnionEcommerceAPI.Core.Domain.Contracts.Presistence.DbInitializers;
 using OnionEcommerceAPI.Core.Domain.Entities.Products;
+using OnionEcommerceAPI.Infrastructure.Persistence.Common;
 
 namespace OnionEcommerceAPI.Infrastructure.Persistence.Data
 {
-    internal class StoreContextInitializer : IStoreContextInitializer
+    internal class StoreContextInitializer : DbInitializer, IStoreContextInitializer
     {
         private readonly StoreContext _storeContext;
 
         public StoreContextInitializer(StoreContext storeContext)
+            : base(storeContext)
         {
             _storeContext = storeContext;
         }
-        public async Task InitializeAsync()
-        {
-            var pendingMigrations = await _storeContext.Database.GetPendingMigrationsAsync();
-            if (pendingMigrations.Any())
-                await _storeContext.Database.MigrateAsync();
-        }
 
-        public async Task SeedAsync()
+        public override async Task SeedAsync()
         {
             #region Brands Seeding
             if (!_storeContext.Brands.Any())

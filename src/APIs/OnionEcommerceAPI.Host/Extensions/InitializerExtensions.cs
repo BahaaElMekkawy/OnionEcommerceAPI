@@ -1,4 +1,4 @@
-﻿using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
+﻿using OnionEcommerceAPI.Core.Domain.Contracts.Presistence.DbInitializers;
 
 namespace OnionEcommerceAPI.API.Extensions
 {
@@ -10,6 +10,7 @@ namespace OnionEcommerceAPI.API.Extensions
             var services = scope.ServiceProvider;
 
             var storeDbContextInitializer = services.GetRequiredService<IStoreContextInitializer>();
+            var storeIdentityDbContextInitializer = services.GetRequiredService<IStoreIdentityContextInitializer>();
             //Ask Runtime to get an object of "StoreContext" Explicitly , Implicitly may be done with the property injection
 
             var loggerFactory = services.GetRequiredService<ILoggerFactory>();
@@ -17,6 +18,9 @@ namespace OnionEcommerceAPI.API.Extensions
             {
                 await storeDbContextInitializer.InitializeAsync();
                 await storeDbContextInitializer.SeedAsync();
+
+                await storeIdentityDbContextInitializer.InitializeAsync();
+                await storeIdentityDbContextInitializer.SeedAsync();
             }
             catch (Exception ex)
             {
