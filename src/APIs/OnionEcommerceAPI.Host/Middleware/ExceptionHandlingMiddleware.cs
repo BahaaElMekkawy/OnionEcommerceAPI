@@ -44,11 +44,22 @@ namespace OnionEcommerceAPI.Host.Middleware
                     httpContext.Response.ContentType = "application/json";
                     response = new ApiResponse(404, exception.Message);
                     break;
+                case ValidationException validationException:
+                    httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    httpContext.Response.ContentType = "application/json";
+                    response = new ApiModelValidationResponse(exception.Message) { Errors = validationException.Errors};
+                    break;
                 case BadRequestException:
                     httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
                     httpContext.Response.ContentType = "application/json";
                     response = new ApiResponse(400, exception.Message);
                     break;
+                case UnauthorizedException:
+                    httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                    httpContext.Response.ContentType = "application/json";
+                    response = new ApiResponse(401, exception.Message);
+                    break;
+
                 default:
                     if (_environment.IsDevelopment())
                     {

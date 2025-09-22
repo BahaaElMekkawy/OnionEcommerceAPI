@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
+using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Auth;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Basket;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Products;
-using OnionEcommerceAPI.Core.Application.Services.Basket;
+using OnionEcommerceAPI.Core.Application.Services.Auth;
 using OnionEcommerceAPI.Core.Application.Services.Products;
-using OnionEcommerceAPI.Core.Domain.Contracts.Infrastructure;
 using OnionEcommerceAPI.Core.Domain.Contracts.Presistence;
 
 namespace OnionEcommerceAPI.Core.Application.Services
@@ -15,16 +15,18 @@ namespace OnionEcommerceAPI.Core.Application.Services
         private readonly IMapper _mapper;
         private readonly Lazy<IProductService> _productService;
         private readonly Lazy<IBasketService> _basketService;
+        private readonly Lazy<IAuthService> _authService;
 
-        public ServiceManager(IUnitOfWork unitOfWork, IMapper mapper, Func<IBasketService> basketServiceFactory)
+        public ServiceManager(IUnitOfWork unitOfWork, IMapper mapper, Func<IBasketService> basketServiceFactory, Func<IAuthService> authServiceFactory)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _productService = new Lazy<IProductService>(() => new ProductService(_unitOfWork, _mapper));
             _basketService = new Lazy<IBasketService>(basketServiceFactory);
+            _authService = new Lazy<IAuthService>(authServiceFactory);
         }
         public IProductService ProductService => _productService.Value;
         public IBasketService BasketService => _basketService.Value;
-
+        public IAuthService AuthService => _authService.Value;
     }
 }

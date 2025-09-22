@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Abstractions.Models.Product;
 using OnionEcommerceAPI.Host.Controllers.Base;
@@ -7,6 +8,7 @@ namespace OnionEcommerceAPI.Web.Controllers.Products
 {
     public class ProductsController(IServiceManager serviceManager) : ApiControllerBase
     {
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<PagedResponse<ProductDetailsDto>>> GetProducts([FromQuery]ProductSpecParams specParams)
         {

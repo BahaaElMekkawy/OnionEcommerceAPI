@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts;
 using OnionEcommerceAPI.Core.Application.Abstractions.Contracts.Basket;
 using OnionEcommerceAPI.Core.Application.Mappings;
 using OnionEcommerceAPI.Core.Application.Services;
-using OnionEcommerceAPI.Core.Application.Services.Basket;
-using OnionEcommerceAPI.Core.Domain.Contracts.Infrastructure;
 
 namespace OnionEcommerceAPI.Core.Application
 {
@@ -20,12 +17,7 @@ namespace OnionEcommerceAPI.Core.Application
 
             services.AddScoped<Func<IBasketService>>(serviceProvider =>
             {
-                return () =>
-                {
-                    var mapper = serviceProvider.GetRequiredService<IMapper>();
-                    var basketRepository = serviceProvider.GetRequiredService<IBasketRepository>();
-                    return new BasketService(basketRepository, mapper);
-                };
+                return () => serviceProvider.GetRequiredService<IBasketService>();
             });
 
             return services;
